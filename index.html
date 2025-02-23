@@ -13,60 +13,67 @@
             font-family: 'Poppins', sans-serif;
         }
         body {
-            background: linear-gradient(135deg, #000000, #121212);
-            padding: 40px;
+            background: linear-gradient(135deg, #000000, #1e1e1e);
+            padding: 20px;
             color: #fff;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
         }
         .invoice-container {
-            max-width: 800px;
-            margin: auto;
-            background: #181818;
-            padding: 30px;
+            width: 100%;
+            max-width: 500px;
+            background: #242424;
+            padding: 20px;
             border-radius: 12px;
             box-shadow: 0 10px 25px rgba(255, 255, 255, 0.1);
             animation: fadeIn 1s ease-in-out;
         }
         .header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
+            text-align: center;
+            padding-bottom: 15px;
             border-bottom: 2px solid #8f6ed5;
-            padding-bottom: 20px;
         }
         .header h2 {
             color: #8f6ed5;
             font-weight: 600;
         }
         .invoice-details {
-            margin-top: 20px;
+            margin-top: 15px;
+            text-align: center;
         }
         .invoice-details p {
             margin: 5px 0;
             color: #ddd;
         }
+        .table-container {
+            overflow-x: auto;
+            margin-top: 15px;
+        }
         table {
             width: 100%;
             border-collapse: collapse;
-            margin-top: 20px;
+            text-align: left;
         }
         th, td {
-            padding: 12px;
-            text-align: left;
+            padding: 10px;
             border-bottom: 1px solid #8f6ed5;
+            font-size: 14px;
         }
         th {
-            background: #222;
+            background: #333;
             color: #8f6ed5;
             text-transform: uppercase;
         }
         .total {
             text-align: right;
-            margin-top: 20px;
+            margin-top: 15px;
             font-weight: 600;
             color: #f78ca0;
         }
         .footer {
-            margin-top: 30px;
+            margin-top: 20px;
             text-align: center;
             font-size: 14px;
             color: #bbb;
@@ -81,37 +88,33 @@
     <div class="invoice-container">
         <div class="header">
             <h2>Invoice</h2>
-            <div>
-                <p><strong>Invoice #:</strong> 0001</p>
-                <p><strong>Date:</strong> February 28, 2025</p>
-            </div>
+            <p><strong>Invoice #:</strong> 0001</p>
+            <p><strong>Date:</strong> February 28, 2025</p>
         </div>
         <div class="invoice-details">
             <p><strong>Billed To:</strong> Glitch Reacts</p>
             <p><strong>Billed By:</strong> dzynsbysoham</p>
         </div>
-        <table>
-            <tr>
-                <th>Sr.No.</th>
-                <th>Description</th>
-                <th>Price</th>
-            </tr>
-            <tr><td>01</td><td>Uday Dissed - DHH Leaking News #1 (Live Streaming Thumbnail)</td><td>₹100</td></tr>
-            <tr><td>02</td><td>Round One - Gaush vs Uday - DHH Leaking News #2 (Live Streaming Thumbnail)</td><td>₹100</td></tr>
-            <tr><td>03</td><td>Gaush Won? - DHH Leaking News #3 (Live Streaming Thumbnail)</td><td>₹100</td></tr>
-            <tr><td>04</td><td>Gaush vs Uday - Who Won? (Reaction Video Thumbnail)</td><td>₹100</td></tr>
-            <tr><td>05</td><td>Anjum vs Nabeel - Good or Bad? (Reaction Video Thumbnail)</td><td>₹100</td></tr>
-            <tr><td>06</td><td>SOS Dropped - Good or Trash? (Reaction Video Thumbnail)</td><td>₹100</td></tr>
-            <tr><td>07</td><td>Best Duo? - DHH Leaking News #4 (Live Streaming Thumbnail)</td><td>₹100</td></tr>
-        </table>
+        <div class="table-container">
+            <table>
+                <tr>
+                    <th>Sr.No.</th>
+                    <th>Description</th>
+                    <th>Price</th>
+                </tr>
+                <tr><td>01</td><td>Uday Dissed - DHH Leaking News #1 (Live Streaming Thumbnail)</td><td>₹100</td></tr>
+                <tr><td>02</td><td>Round One - Gaush vs Uday - DHH Leaking News #2 (Live Streaming Thumbnail)</td><td>₹100</td></tr>
+                <tr><td>03</td><td>Gaush Won? - DHH Leaking News #3 (Live Streaming Thumbnail)</td><td>₹100</td></tr>
+                <tr><td>04</td><td>Gaush vs Uday - Who Won? (Reaction Video Thumbnail)</td><td>₹100</td></tr>
+                <tr><td>05</td><td>Anjum vs Nabeel - Good or Bad? (Reaction Video Thumbnail)</td><td>₹100</td></tr>
+                <tr><td>06</td><td>SOS Dropped - Good or Trash? (Reaction Video Thumbnail)</td><td>₹100</td></tr>
+                <tr><td>07</td><td>Best Duo? - DHH Leaking News #4 (Live Streaming Thumbnail)</td><td>₹100</td></tr>
+            </table>
+        </div>
         <p class="total">Grand Total: <strong>₹700</strong></p>
         <div class="footer">
             <p>Thank you for having us!</p>
         </div>
     </div>
- <footer>
-        <p>&copy; 2025 DzynsbySoham. All rights reserved.</p>
-    </footer>
-
 </body>
 </html>
