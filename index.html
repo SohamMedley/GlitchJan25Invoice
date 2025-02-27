@@ -61,12 +61,11 @@
         }
         .pay-buttons {
             display: flex;
-            justify-content: space-between;
+            justify-content: center;
             margin-top: 20px;
         }
         .pay-btn {
-            flex: 1;
-            padding: 12px;
+            padding: 12px 20px;
             border: none;
             border-radius: 8px;
             font-size: 16px;
@@ -75,20 +74,10 @@
             font-weight: 600;
             color: #fff;
             text-align: center;
-        }
-        .qr-btn {
             background: linear-gradient(45deg, #8f6ed5, #f78ca0);
-            margin-right: 10px;
         }
-        .qr-btn:hover {
+        .pay-btn:hover {
             background: linear-gradient(45deg, #6e4cc7, #d4577a);
-            transform: scale(1.05);
-        }
-        .upi-btn {
-            background: linear-gradient(45deg, #f78ca0, #ffba53);
-        }
-        .upi-btn:hover {
-            background: linear-gradient(45deg, #d4577a, #ff9f33);
             transform: scale(1.05);
         }
         .overlay {
@@ -112,10 +101,12 @@
             filter: blur(8px);
             pointer-events: none;
         }
-        .back-btn {
+        .qr-controls {
             position: absolute;
             top: 20px;
             left: 20px;
+        }
+        .control-btn {
             background: rgba(255, 255, 255, 0.2);
             border: none;
             padding: 8px 14px;
@@ -127,13 +118,34 @@
             display: flex;
             align-items: center;
         }
-        .back-btn:hover {
+        .control-btn:hover {
             background: rgba(255, 255, 255, 0.4);
             transform: scale(1.1);
         }
-        .back-btn span {
+        .control-btn span {
             margin-left: 5px;
             font-weight: bold;
+        }
+        .download-btn {
+            background: #4caf50;
+            padding: 12px 20px;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: 0.3s ease-in-out;
+            font-weight: 600;
+            color: #fff;
+            display: flex;
+            align-items: center;
+            margin-top: 15px;
+        }
+        .download-btn:hover {
+            background: #388e3c;
+            transform: scale(1.05);
+        }
+        .download-btn i {
+            margin-right: 8px;
         }
     </style>
 </head>
@@ -165,17 +177,18 @@
         </div>
         <p class="total">Grand Total: <strong>₹700</strong></p>
         <div class="pay-buttons">
-            <button class="pay-btn qr-btn" onclick="payViaQR()">Pay via QR</button>
-            <button class="pay-btn upi-btn" onclick="payViaUPI()">Pay in App</button>
-        </div>
-        <div class="footer">
-            <p>&copy; 2025 dzynsbysoham. All rights reserved.</p>
+            <button class="pay-btn" onclick="payViaQR()">Pay via QR</button>
         </div>
     </div>
 
     <div class="overlay" id="overlay">
-        <button class="back-btn" onclick="goBack()">← <span>Back</span></button>
-        <img src="images/pay.png" alt="QR Code">
+        <div class="qr-controls">
+            <button class="control-btn" onclick="goBack()">← <span>Back</span></button>
+        </div>
+        <img src="pay.png" alt="QR Code" id="qrImage">
+        <button class="download-btn" onclick="downloadQR()">
+            ⬇ Download QR
+        </button>
     </div>
 
     <script>
@@ -187,8 +200,13 @@
             document.getElementById('invoice').classList.remove('blurred');
             document.getElementById('overlay').style.display = 'none';
         }
-        function payViaUPI() {
-            window.location.href = "upi://pay?pa=dharap.soham247@okicici&pn=Soham";
+        function downloadQR() {
+            var link = document.createElement('a');
+            link.href = 'pay.png';
+            link.download = 'QR-Code.png';
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
         }
     </script>
 </body>
