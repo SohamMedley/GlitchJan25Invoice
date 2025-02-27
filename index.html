@@ -29,6 +29,7 @@
             border-radius: 12px;
             box-shadow: 0 10px 25px rgba(255, 255, 255, 0.1);
             animation: fadeIn 1s ease-in-out;
+            text-align: center;
         }
         .header {
             text-align: center;
@@ -41,7 +42,6 @@
         }
         .invoice-details {
             margin-top: 15px;
-            text-align: center;
         }
         .invoice-details p {
             margin: 5px 0;
@@ -72,9 +72,23 @@
             font-weight: 600;
             color: #f78ca0;
         }
+        .pay-now {
+            display: inline-block;
+            margin-top: 15px;
+            padding: 10px 15px;
+            background: #8f6ed5;
+            color: #fff;
+            font-size: 16px;
+            font-weight: 600;
+            text-decoration: none;
+            border-radius: 8px;
+            transition: 0.3s ease-in-out;
+        }
+        .pay-now:hover {
+            background: #7a5fc9;
+        }
         .footer {
             margin-top: 20px;
-            text-align: center;
             font-size: 14px;
             color: #bbb;
         }
@@ -88,7 +102,7 @@
     <div class="invoice-container">
         <div class="header">
             <h2><b><strong>THUMBNAIL INVOICE</strong></b></h2>
-	    <p><i>for February 2025</i></p>
+            <p><i>for February 2025</i></p>
             <p><strong>Invoice </strong>#0001</p>
         </div>
         <div class="invoice-details">
@@ -111,6 +125,7 @@
             </table>
         </div>
         <p class="total">Grand Total: <strong>₹700</strong></p>
+        <a href="upi://pay?pa=dharap.soham247@okicici&pn=Soham%20Dharap&mc=0000&tid=123456789&tr=INV0001&tn=Thumbnail%20Invoice%20Feb%202025&am=700&cu=INR" class="pay-now">Pay Now</a>
         <div class="footer">
             <p>&copy; 2025 dzynsbysoham. All rights reserved.</p>
         </div>
