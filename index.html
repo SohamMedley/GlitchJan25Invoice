@@ -40,17 +40,10 @@
             color: #8f6ed5;
             font-weight: 600;
         }
-        .invoice-details {
-            margin-top: 15px;
+        .invoice-details, .table-container, .total, .footer {
             text-align: center;
-        }
-        .invoice-details p {
-            margin: 5px 0;
-            color: #ddd;
-        }
-        .table-container {
-            overflow-x: auto;
             margin-top: 15px;
+            color: #ddd;
         }
         table {
             width: 100%;
@@ -65,19 +58,6 @@
         th {
             background: #333;
             color: #8f6ed5;
-            text-transform: uppercase;
-        }
-        .total {
-            text-align: right;
-            margin-top: 15px;
-            font-weight: 600;
-            color: #f78ca0;
-        }
-        .footer {
-            margin-top: 20px;
-            text-align: center;
-            font-size: 14px;
-            color: #bbb;
         }
         .pay-buttons {
             display: flex;
@@ -132,6 +112,29 @@
             filter: blur(8px);
             pointer-events: none;
         }
+        .back-btn {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            background: rgba(255, 255, 255, 0.2);
+            border: none;
+            padding: 8px 14px;
+            border-radius: 50px;
+            font-size: 16px;
+            color: #fff;
+            cursor: pointer;
+            transition: 0.3s ease-in-out;
+            display: flex;
+            align-items: center;
+        }
+        .back-btn:hover {
+            background: rgba(255, 255, 255, 0.4);
+            transform: scale(1.1);
+        }
+        .back-btn span {
+            margin-left: 5px;
+            font-weight: bold;
+        }
     </style>
 </head>
 <body>
@@ -171,13 +174,18 @@
     </div>
 
     <div class="overlay" id="overlay">
-        <img src="images/pay.png" alt="QR Code">
+        <button class="back-btn" onclick="goBack()">← <span>Back</span></button>
+        <img src="pay.png" alt="QR Code">
     </div>
 
     <script>
         function payViaQR() {
             document.getElementById('invoice').classList.add('blurred');
             document.getElementById('overlay').style.display = 'flex';
+        }
+        function goBack() {
+            document.getElementById('invoice').classList.remove('blurred');
+            document.getElementById('overlay').style.display = 'none';
         }
         function payViaUPI() {
             window.location.href = "upi://pay?pa=dharap.soham247@okicici&pn=Soham";
