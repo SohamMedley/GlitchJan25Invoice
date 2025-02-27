@@ -29,7 +29,8 @@
             border-radius: 12px;
             box-shadow: 0 10px 25px rgba(255, 255, 255, 0.1);
             animation: fadeIn 1s ease-in-out;
-            text-align: center;
+            position: relative;
+            z-index: 10;
         }
         .header {
             text-align: center;
@@ -42,6 +43,7 @@
         }
         .invoice-details {
             margin-top: 15px;
+            text-align: center;
         }
         .invoice-details p {
             margin: 5px 0;
@@ -72,37 +74,89 @@
             font-weight: 600;
             color: #f78ca0;
         }
-        .pay-now {
-            display: inline-block;
-            margin-top: 15px;
-            padding: 10px 15px;
-            background: #8f6ed5;
-            color: #fff;
-            font-size: 16px;
-            font-weight: 600;
-            text-decoration: none;
-            border-radius: 8px;
-            transition: 0.3s ease-in-out;
-        }
-        .pay-now:hover {
-            background: #7a5fc9;
-        }
         .footer {
             margin-top: 20px;
+            text-align: center;
             font-size: 14px;
             color: #bbb;
+        }
+        .pay-buttons {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 20px;
+        }
+        .pay-btn {
+            flex: 1;
+            padding: 12px;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: 0.3s ease-in-out;
+            font-weight: 600;
+            color: #fff;
+            text-align: center;
+        }
+        .qr-btn {
+            background: linear-gradient(45deg, #8f6ed5, #f78ca0);
+            margin-right: 10px;
+        }
+        .qr-btn:hover {
+            background: linear-gradient(45deg, #6e4cc7, #d4577a);
+            transform: scale(1.05);
+        }
+        .upi-btn {
+            background: linear-gradient(45deg, #f78ca0, #ffba53);
+        }
+        .upi-btn:hover {
+            background: linear-gradient(45deg, #d4577a, #ff9f33);
+            transform: scale(1.05);
+        }
+        .overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.7);
+            display: none;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            z-index: 20;
+        }
+        .overlay img {
+            max-width: 300px;
+            border-radius: 10px;
+        }
+        .loading {
+            width: 60px;
+            height: 60px;
+            border: 6px solid rgba(255, 255, 255, 0.2);
+            border-top-color: #fff;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin-bottom: 20px;
+        }
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
         }
         @keyframes fadeIn {
             from { opacity: 0; transform: translateY(-10px); }
             to { opacity: 1; transform: translateY(0); }
         }
+        .blurred {
+            filter: blur(8px);
+            pointer-events: none;
+        }
     </style>
 </head>
 <body>
-    <div class="invoice-container">
+    <div class="invoice-container" id="invoice">
         <div class="header">
             <h2><b><strong>THUMBNAIL INVOICE</strong></b></h2>
-            <p><i>for February 2025</i></p>
+	        <p><i>for February 2025</i></p>
             <p><strong>Invoice </strong>#0001</p>
         </div>
         <div class="invoice-details">
@@ -125,11 +179,28 @@
             </table>
         </div>
         <p class="total">Grand Total: <strong>₹700</strong></p>
-       <a href="upi://pay?pa=ayush.salunkhe7371-1@oksbi&pn=Ayush%20Salunkhe&tn=Thumbnail%20Invoice%20Feb%202025&am=1&cu=INR" class="pay-now">Pay Now</a>
-
- <div class="footer">
+        <div class="pay-buttons">
+            <button class="pay-btn qr-btn" onclick="payViaQR()">Pay via QR</button>
+            <button class="pay-btn upi-btn" onclick="payViaUPI()">Pay in App</button>
+        </div>
+        <div class="footer">
             <p>&copy; 2025 dzynsbysoham. All rights reserved.</p>
         </div>
     </div>
+
+    <div class="overlay" id="overlay">
+        <div class="loading"></div>
+        <img src="pay.png" alt="QR Code">
+    </div>
+
+    <script>
+        function payViaQR() {
+            document.getElementById('invoice').classList.add('blurred');
+            document.getElementById('overlay').style.display = 'flex';
+        }
+        function payViaUPI() {
+            window.location.href = "upi://pay?pa=dharap.soham247@okicici&pn=Soham";
+        }
+    </script>
 </body>
 </html>
