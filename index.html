@@ -30,6 +30,7 @@
             box-shadow: 0 10px 25px rgba(255, 255, 255, 0.1);
             position: relative;
             z-index: 10;
+            text-align: center;
         }
         .header {
             text-align: center;
@@ -40,15 +41,24 @@
             color: #8f6ed5;
             font-weight: 600;
         }
-        .invoice-details, .table-container, .total, .footer {
-            text-align: center;
+        .invoice-details {
             margin-top: 15px;
             color: #ddd;
+            text-align: center;
+        }
+        .profile-img {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 3px solid #8f6ed5;
+            margin-bottom: 10px;
         }
         table {
             width: 100%;
             border-collapse: collapse;
             text-align: left;
+            margin-top: 15px;
         }
         th, td {
             padding: 10px;
@@ -58,6 +68,10 @@
         th {
             background: #333;
             color: #8f6ed5;
+        }
+        .total {
+            margin-top: 15px;
+            font-size: 18px;
         }
         .pay-buttons {
             display: flex;
@@ -70,7 +84,6 @@
             border-radius: 8px;
             font-size: 16px;
             cursor: pointer;
-            transition: 0.3s ease-in-out;
             font-weight: 600;
             color: #fff;
             text-align: center;
@@ -114,17 +127,12 @@
             font-size: 16px;
             color: #fff;
             cursor: pointer;
-            transition: 0.3s ease-in-out;
             display: flex;
             align-items: center;
         }
         .control-btn:hover {
             background: rgba(255, 255, 255, 0.4);
             transform: scale(1.1);
-        }
-        .control-btn span {
-            margin-left: 5px;
-            font-weight: bold;
         }
         .download-btn {
             background: #4caf50;
@@ -133,7 +141,6 @@
             border-radius: 8px;
             font-size: 16px;
             cursor: pointer;
-            transition: 0.3s ease-in-out;
             font-weight: 600;
             color: #fff;
             display: flex;
@@ -144,37 +151,29 @@
             background: #388e3c;
             transform: scale(1.05);
         }
-        .download-btn i {
-            margin-right: 8px;
-        }
     </style>
 </head>
 <body>
     <div class="invoice-container" id="invoice">
         <div class="header">
-            <h2><b><strong>THUMBNAIL INVOICE</strong></b></h2>
-	        <p><i>for February 2025</i></p>
+            <h2><b>THUMBNAIL INVOICE</b></h2>
+            <p><i>for February 2025</i></p>
             <p><strong>Invoice </strong>#0001</p>
         </div>
         <div class="invoice-details">
+            <img src="images/profile.png" alt="Profile Image" class="profile-img">
             <p><strong>Billed To:</strong> Glitch Reacts</p>
         </div>
-        <div class="table-container">
-            <table>
-                <tr>
-                    <th>Sr.No.</th>
-                    <th>Description</th>
-                    <th>Price</th>
-                </tr>
-                <tr><td>01</td><td>Uday Dissed - DHH Leaking News #1 (Live Streaming Thumbnail)</td><td>₹100</td></tr>
-                <tr><td>02</td><td>Round One - Gaush vs Uday - DHH Leaking News #2 (Live Streaming Thumbnail)</td><td>₹100</td></tr>
-                <tr><td>03</td><td>Gaush Won? - DHH Leaking News #3 (Live Streaming Thumbnail)</td><td>₹100</td></tr>
-                <tr><td>04</td><td>Gaush vs Uday - Who Won? (Reaction Video Thumbnail)</td><td>₹100</td></tr>
-                <tr><td>05</td><td>Anjum vs Nabeel - Good or Bad? (Reaction Video Thumbnail)</td><td>₹100</td></tr>
-                <tr><td>06</td><td>SOS Dropped - Good or Trash? (Reaction Video Thumbnail)</td><td>₹100</td></tr>
-                <tr><td>07</td><td>Best Duo? - DHH Leaking News #4 (Live Streaming Thumbnail)</td><td>₹100</td></tr>
-            </table>
-        </div>
+        <table>
+            <tr>
+                <th>Sr.No.</th>
+                <th>Description</th>
+                <th>Price</th>
+            </tr>
+            <tr><td>01</td><td>Uday Dissed - DHH Leaking News #1 (Thumbnail)</td><td>₹100</td></tr>
+            <tr><td>02</td><td>Round One - Gaush vs Uday - DHH Leaking News #2 (Thumbnail)</td><td>₹100</td></tr>
+            <tr><td>03</td><td>Gaush Won? - DHH Leaking News #3 (Thumbnail)</td><td>₹100</td></tr>
+        </table>
         <p class="total">Grand Total: <strong>₹700</strong></p>
         <div class="pay-buttons">
             <button class="pay-btn" onclick="payViaQR()">Pay via QR</button>
@@ -183,12 +182,10 @@
 
     <div class="overlay" id="overlay">
         <div class="qr-controls">
-            <button class="control-btn" onclick="goBack()">← <span>Back</span></button>
+            <button class="control-btn" onclick="goBack()">← Back</button>
         </div>
         <img src="images/pay.png" alt="QR Code" id="qrImage">
-        <button class="download-btn" onclick="downloadQR()">
-            ⬇ Download QR
-        </button>
+        <button class="download-btn" onclick="downloadQR()">⬇ Download QR</button>
     </div>
 
     <script>
@@ -200,16 +197,14 @@
             document.getElementById('invoice').classList.remove('blurred');
             document.getElementById('overlay').style.display = 'none';
         }
-       function downloadQR() {
-    const link = document.createElement('a');
-    link.href = 'pay.png'; // Direct image link
-    link.download = 'QR-Code.png'; // Ensures correct filename
-    document.body.appendChild(link);
-    link.click();
-    document.body.removeChild(link);
-}
-
-
+        function downloadQR() {
+            const link = document.createElement('a');
+            link.href = 'images/pay.png';
+            link.download = 'QR-Code.png';
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+        }
     </script>
 </body>
 </html>
